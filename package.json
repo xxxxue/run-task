@@ -1,9 +1,27 @@
 {
-    "name": "run-task",
-    "publisher":"csq",
-    "displayName": "run task",
+    "name": "a-my-run-task",
+    "publisher": "csq",
+    "displayName": "a-my-run-task",
     "description": "Task manager and runner for Gulp, NPM builtin tasks and shell scripts.",
-    "version": "0.1.1",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "npx vsce package",
+        "prettier": "npx prettier ./src/ -w",
+        "dev": "please use .vscode/launch.json"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.4",
+        "@types/node": "^12.11.7",
+        "@types/vscode": "^1.54.0",
+        "@vscode/vsce": "^3.2.1",
+        "glob": "^7.1.6",
+        "mocha": "^8.2.1",
+        "prettier": "^3.4.2",
+        "typescript": "^4.1.3",
+        "vscode-test": "^1.5.0"
+    },
+    "dependencies": {},
     "engines": {
         "vscode": "^1.54.0"
     },
@@ -19,10 +37,14 @@
         "执行任务"
     ],
     "activationEvents": [
-        "*"
+        "workspaceContains:gulpfile.*",
+        "workspaceContains:*.bat",
+        "workspaceContains:*.py",
+        "workspaceContains:*.sh",
+        "workspaceContains:package.json"
     ],
     "icon": "resources/run-from.png",
-    "main": "./extension.js",
+    "main": "./src/extension.js",
     "contributes": {
         "commands": [
             {
@@ -162,21 +184,5 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/JQSC/run-task.git"
-    },
-    "scripts": {
-        "lint": "eslint .",
-        "pretest": "npm run lint",
-        "test": "node ./test/runTest.js"
-    },
-    "devDependencies": {
-        "@types/vscode": "^1.54.0",
-        "@types/glob": "^7.1.3",
-        "@types/mocha": "^8.0.4",
-        "@types/node": "^12.11.7",
-        "eslint": "^7.19.0",
-        "glob": "^7.1.6",
-        "mocha": "^8.2.1",
-        "typescript": "^4.1.3",
-        "vscode-test": "^1.5.0"
     }
 }
